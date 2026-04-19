@@ -116,7 +116,8 @@
           "Email support"
         ],
         "cta": "Start with Starter",
-        "recommended": false
+        "recommended": false,
+        "checkout_url": "https://buy.polar.sh/polar_cl_TETPZ9UG4Ak63NYNWGAaNSveRhQPCT5loi4JF2BOHcj"
       },
       {
         "name": "Pro",
@@ -131,7 +132,8 @@
           "Priority email support"
         ],
         "cta": "Go Pro",
-        "recommended": true
+        "recommended": true,
+        "checkout_url": "https://buy.polar.sh/polar_cl_E3lkfTYf2vYt7xuh8YhLptPxPAvP1evAzIHKU0WoOux"
       }
     ],
     "guarantee": "30-day refund, no questions. Yearly plans get two months free."
