@@ -3,6 +3,7 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import { loadLanding } from "@/lib/content";
+import { supabaseServer } from "@/lib/supabase";
 
 export async function generateMetadata(): Promise<Metadata> {
   const landing = await loadLanding();
@@ -20,7 +21,10 @@ Stripe account via read-only API key, see everything in 30 seconds.
   };
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const supabase = await supabaseServer().catch(() => null);
+  const { data: { user } = { user: null } } = supabase ? await supabase.auth.getUser() : { data: { user: null } };
+
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <body className="font-sans">
@@ -30,11 +34,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <span className="w-6 h-6 rounded-md bg-gradient-to-br from-accent to-accent-hover shadow-[0_0_12px_2px] shadow-accent-glow" />
               <span>Stripe Revenue Tracker</span>
             </a>
-            <div className="flex gap-7 text-sm text-fg-muted">
-              <a href="/#features" className="hover:text-fg transition">Features</a>
-              <a href="/#pricing" className="hover:text-fg transition">Pricing</a>
-              <a href="/blog" className="hover:text-fg transition">Blog</a>
-              <a href="/#pricing" className="btn-primary !py-1.5 !px-4 !text-sm">Start free</a>
+            <div className="flex gap-7 text-sm text-fg-muted items-center">
+              <a href="/#features" className="hover:text-fg transition hidden sm:inline">Features</a>
+              <a href="/#pricing" className="hover:text-fg transition hidden sm:inline">Pricing</a>
+              <a href="/blog" className="hover:text-fg transition hidden sm:inline">Blog</a>
+              {user ? (
+                <a href="/account" className="btn-primary !py-1.5 !px-4 !text-sm">Account</a>
+              ) : (
+                <>
+                  <a href="/login" className="hover:text-fg transition">Sign in</a>
+                  <a href="/#pricing" className="btn-primary !py-1.5 !px-4 !text-sm">Start free</a>
+                </>
+              )}
             </div>
           </nav>
         </header>
