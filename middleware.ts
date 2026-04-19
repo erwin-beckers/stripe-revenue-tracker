@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { supabaseMiddleware } from "@/lib/supabase";
+import { supabaseMiddleware } from "@/lib/supabase-server";
 
 const PROTECTED_PREFIXES = ["/app", "/account"];
 

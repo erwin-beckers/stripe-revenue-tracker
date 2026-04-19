@@ -12,7 +12,8 @@
  */
 import { NextResponse, type NextRequest } from "next/server";
 import crypto from "crypto";
-import { supabaseAdmin, PRODUCT_ID } from "@/lib/supabase";
+import { PRODUCT_ID } from "@/lib/supabase";
+import { supabaseAdmin } from "@/lib/supabase-server";
 
 export const runtime = "nodejs";
 
