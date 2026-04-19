@@ -1,13 +1,65 @@
 import { promises as fs } from "fs";
 import path from "path";
 
+export type PricingTier = {
+  name: string;
+  price_usd: number;
+  period: "month" | "year" | "once";
+  features: string[];
+  cta: string;
+  recommended?: boolean;
+  checkout_url?: string;
+};
+
 export type LandingCopy = {
-  hero: { headline: string; subheadline: string; cta: string };
-  problem: { title: string; body: string };
-  solution: { title: string; body: string };
-  features: Array<{ title: string; body: string }>;
-  faqs: Array<{ q: string; a: string }>;
-  cta_final: { headline: string; body: string; button: string };
+  hero: {
+    eyebrow?: string;
+    headline: string;
+    subheadline: string;
+    cta_primary: string;
+    cta_secondary?: string;
+    image_prompt?: string;
+    image_url?: string;
+  };
+  social_proof?: {
+    label?: string;
+    metrics: Array<{ value: string; label: string }>;
+  };
+  problem: {
+    eyebrow?: string;
+    title: string;
+    scenarios: string[];
+  };
+  solution: {
+    eyebrow?: string;
+    title: string;
+    body: string;
+  };
+  features: Array<{
+    title: string;
+    body: string;
+    image_prompt?: string;
+    image_url?: string;
+  }>;
+  testimonials?: Array<{
+    quote: string;
+    author: string;
+    role: string;
+    avatar_prompt?: string;
+    avatar_url?: string;
+  }>;
+  pricing: {
+    tagline?: string;
+    tiers: PricingTier[];
+    guarantee?: string;
+  };
+  faq: Array<{ q: string; a: string }>;
+  cta_final: {
+    headline: string;
+    body: string;
+    button: string;
+    urgency?: string;
+  };
 };
 
 export type BlogPost = {
@@ -17,6 +69,8 @@ export type BlogPost = {
   h1: string;
   body_markdown: string;
   target_keyword: string;
+  cover_image_prompt?: string;
+  cover_image_url?: string;
 };
 
 const CONTENT_DIR = path.join(process.cwd(), "content");

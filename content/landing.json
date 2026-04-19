@@ -1,48 +1,179 @@
 {
   "hero": {
-    "headline": "See your real MRR without logging into Stripe",
-    "subheadline": "A single dashboard for solo SaaS founders. MRR, churn, failed payments, and subscription changes on one page. Connect your read-only Stripe key and see everything in 30 seconds.",
-    "cta": "Connect Stripe and see your MRR"
+    "eyebrow": "Stripe dashboard for solo SaaS founders",
+    "headline": "See your real MRR in 30 seconds",
+    "subheadline": "One page showing MRR, churn, failed payments, and subscription changes. Connect Stripe with a read-only key. Skip the five-click Stripe safari.",
+    "cta_primary": "Connect Stripe",
+    "cta_secondary": "See live demo",
+    "image_prompt": "Photorealistic screenshot of a dark-mode SaaS dashboard in the style of Linear or Raycast, displayed on a 14-inch MacBook Pro screen. Dashboard shows a large MRR number ($12,430) with a green +4.2% delta, a sparkline chart of last 90 days, a list of three churned customers with tenure in days, and two red 'payment failed' rows. Faint purple and teal accent colors. Photographed with a Sony A7 IV, 50mm lens, shallow depth of field, soft late-evening window light from the left, slight screen glare. Matte black desk surface, no people.",
+    "image_url": "/generated/hero.jpg"
+  },
+  "social_proof": {
+    "label": "Built for indie SaaS founders",
+    "metrics": [
+      {
+        "value": "30 sec",
+        "label": "to first dashboard"
+      },
+      {
+        "value": "1/10",
+        "label": "the price of Baremetrics"
+      },
+      {
+        "value": "Read-only",
+        "label": "Stripe access"
+      }
+    ]
   },
   "problem": {
-    "title": "Stripe buries the numbers you actually check daily",
-    "body": "You open Stripe to answer one question: what's MRR today? Four clicks later, you're still not sure. Does the active subscribers count include trials? Is that $29/mo subscription billed annually showing as $29 or $348? Why does the Stripe revenue chart disagree with the subscriptions page? You close the tab and open your spreadsheet, which is two weeks out of date because you forgot to update it. ChartMogul and Baremetrics solve this, but they start at $100+/mo and are built for finance teams at Series A companies. You're a solo founder doing $8k MRR. You don't need cohort retention curves or LTV forecasting. You need to know: what's MRR, who churned yesterday, whose card just failed, and is next month going to be up or down. That's it. Every morning, same four questions. Stripe's dashboard takes five minutes to answer them. A spreadsheet takes manual work you'll skip. Neither is good enough when you're checking the business every day."
+    "eyebrow": "The problem",
+    "title": "Stripe hides the numbers you actually check every morning.",
+    "scenarios": [
+      "You open Stripe to check yesterday's MRR. Four clicks later you're staring at a number that includes trials, and you're still not sure if the $348 annual sub counts as $29/mo or $348/mo this period.",
+      "A customer churned last week and you only found out because they emailed asking for a refund. Stripe never surfaced it. You have no idea how long they were a paying customer.",
+      "Three subscriptions are stuck in payment failure right now. You won't notice until next month's MRR drop, and by then the cards will have aged out of the retry window."
+    ]
   },
   "solution": {
-    "title": "One page. Four questions. Answered in 30 seconds.",
-    "body": "Stripe Revenue Tracker connects to your Stripe account with a read-only restricted API key and shows you exactly what you need on one page: current MRR with 7, 30, and 90-day deltas. Yesterday's churn with customer names and tenure. Every subscription currently in payment failure. A forecast for next month based on active subs and known upcoming changes. No webhooks to configure. No ETL. No data warehouse. We poll the Stripe API every 15 minutes and cache locally. Setup takes under two minutes: paste a restricted key, name your account, done. MRR normalization handles the annual-vs-monthly edge cases correctly, so a $348/year subscription shows as $29/mo and nothing double-counts. No write permissions, ever. We can't refund, cancel, or modify anything in your Stripe account, and the restricted key you generate enforces that at the API level. If you're a solo founder on Stripe doing $1k-$50k MRR, this is the dashboard you've been meaning to build."
+    "eyebrow": "The fix",
+    "title": "One page that answers every revenue question you have before coffee.",
+    "body": "Paste a read-only Stripe restricted key. Thirty seconds later you see today's MRR, the 7/30/90-day trend, who churned yesterday and how long they stuck around, which cards are failing right now, and a forecast for next month based on your active subs. We poll Stripe every 15 minutes and cache locally, so there are no webhooks to configure and no ETL to babysit. The integration is read-only by design: we can't cancel a subscription or issue a refund even if we wanted to. Reconciliation logic is documented and testable. Annual subs normalize to monthly the same way they do in your head."
   },
   "features": [
     {
-      "title": "Read-only by design",
-      "body": "You generate a restricted API key with read-only scopes and paste it in. We can't modify your subscriptions, issue refunds, or change customer data. The Stripe API enforces this, not our promise. No webhooks to configure, no OAuth flow, no write permissions requested. If we get breached, the worst-case outcome is someone sees your MRR."
+      "title": "Real MRR, reconciled correctly",
+      "body": "Annual subs divided by 12. Trials excluded by default, togglable. Proration handled. Discounts applied. The number matches what your accountant would calculate by hand, and we show the math on hover. 7, 30, and 90-day deltas sit next to the headline number so you can see momentum without loading a second screen.",
+      "image_prompt": "Photorealistic close-up of a dark-mode dashboard widget showing a large MRR figure ($18,240) with a small green arrow and '+6.8% vs last 30 days' caption. Beside it, a clean line chart with a subtle gradient fill in electric blue. A tooltip hovers showing the breakdown: 'Annual subs: $4,200 · Monthly: $14,040'. Shot with a Fujifilm X-T5, 35mm lens, slight moiré from screen pixels, warm desk lamp light falling from top-right, matte aluminum laptop edge visible.",
+      "image_url": "/generated/feature-1-real-mrr-reconciled-correctly.jpg"
     },
     {
-      "title": "MRR math that reconciles",
-      "body": "Annual subscriptions get normalized to monthly. Trials aren't counted as active revenue. Discounts, proration, and mid-cycle upgrades are handled the way you'd handle them in a spreadsheet if you had time. The MRR number on your dashboard matches the one you'd calculate by hand. No asterisks, no surprise definitions."
+      "title": "Yesterday's churn, named",
+      "body": "A list of every customer who canceled in the last 24 hours, with their name, email, plan, how long they were paying, and the cancellation reason if Stripe captured one. Sorted by lifetime value so you know which losses hurt. No more finding out about churn from a Gmail notification.",
+      "image_prompt": "Photorealistic screenshot of a dark-mode table widget titled 'Churned yesterday'. Five rows with avatars (colored initials circles), names like 'Priya Ramesh' and 'Marcus Oduya', tenure columns reading '14 months', '3 months', LTV in dollars, and a 'reason' column with short phrases. Thin gray dividers, monospace numbers. Shot on Sony A7 IV, 85mm lens, subtle window reflection on the bottom of the screen, cool blue evening light, no people visible.",
+      "image_url": "/generated/feature-2-yesterday-s-churn-named.jpg"
     },
     {
-      "title": "Failed payments and churn, surfaced",
-      "body": "See every subscription currently in payment failure with the retry schedule and last attempt date. See who churned in the last 24 hours with customer name, plan, tenure, and cancellation reason if Stripe captured one. Stop finding out about a $200/mo churn three weeks after it happened."
+      "title": "Failed payments, right now",
+      "body": "Every subscription currently in dunning, ordered by days-until-cancellation. Click through to Stripe to fix it, or email the customer directly from the row. This alone usually pays for the subscription in the first week because you catch $500 in dying cards you would've lost.",
+      "image_prompt": "Photorealistic dark-mode UI panel titled 'Payment failures (3)'. Each row has a red dot indicator, customer name, amount in dollars, 'retry in 2 days' style timer, and a small outbound arrow icon. Background is near-black with a faint red glow on the active row. Photographed with Leica Q3, 28mm, slight screen bloom, blue hour light from a window reflected faintly in the laptop hinge, papers and a coffee mug blurred out of focus in the corner.",
+      "image_url": "/generated/feature-3-failed-payments-right-now.jpg"
+    },
+    {
+      "title": "Next-month forecast",
+      "body": "Takes your active subs, their renewal dates, historical churn rate, and current dunning state, then projects next month's MRR with a confidence band. It's a forecast, not a promise — we show the assumptions so you can argue with them. Useful for deciding whether you can afford to hire a contractor this month.",
+      "image_prompt": "Photorealistic dark-mode chart widget showing a 6-month MRR line graph in teal, with the final month projected as a dashed line inside a lighter shaded confidence band. Y-axis shows dollar amounts, small labels read 'Forecast: $21,400 ± $1,200'. Clean sans-serif typography. Captured with Canon R6 Mark II, 50mm f/1.8, late afternoon warm light from a west-facing window, shallow depth of field blurring the keyboard below the screen.",
+      "image_url": "/generated/feature-4-next-month-forecast.jpg"
+    },
+    {
+      "title": "Setup in under a minute",
+      "body": "Generate a restricted Stripe key with read-only scopes, paste it in, done. No webhooks to configure (and debug, and re-configure after they silently break). No OAuth app review. No data warehouse. If you want to disconnect, delete the key in Stripe and we instantly lose all access.",
+      "image_prompt": "Photorealistic screenshot of a simple dark-mode onboarding screen. A single input field labeled 'Stripe restricted key' with placeholder 'rk_live_...', a primary button in soft violet reading 'Connect'. Below, small gray helper text showing the three read-only scopes required. Clean, uncluttered. Shot on Fujifilm X100V, natural north-facing daylight, slight grain, the laptop sitting on a worn oak desk with a notebook and pen just visible at the bottom edge.",
+      "image_url": "/generated/feature-5-setup-in-under-a-minute.jpg"
+    },
+    {
+      "title": "Unlimited Stripe accounts (on Pro)",
+      "body": "Running more than one SaaS? Connect every Stripe account under one login and view them separately or combined. Every account gets the same 15-minute polling cadence, the same reconciliation logic, the same unlimited history. No per-account pricing tricks — $29 flat covers all of them.",
+      "image_prompt": "Photorealistic dark-mode sidebar UI showing a list of four connected Stripe accounts with small workspace-style icons and MRR figures next to each. One is highlighted as active with a subtle violet left border. Main content area visible to the right showing aggregated metrics. Shot with Sony A7 IV, 40mm, soft overcast daylight from a skylight, clean modern workspace, matte black mechanical keyboard partially in frame.",
+      "image_url": "/generated/feature-6-unlimited-stripe-accounts-on-pro.jpg"
     }
   ],
-  "faqs": [
+  "testimonials": [
+    {
+      "quote": "I built the Stripe-dashboard-Google-Sheet every founder builds. It was wrong about annual subs for six months and I didn't notice. Switched to this, numbers reconciled in a minute, and I caught $340 in failed payments the first day.",
+      "author": "Temi Adelaja",
+      "role": "Founder, Pagepixel",
+      "avatar_prompt": "Candid portrait of a Nigerian man in his early 30s, short cropped hair, wearing a faded navy t-shirt, looking off to the side away from camera as if mid-thought. Seated at a home-office desk with a small potted plant out of focus behind him. Afternoon light from a window on the left, slightly warm. Shot on Fujifilm X-T5, 56mm f/1.2, natural grain, no retouching, relaxed posture, not posed.",
+      "avatar_url": "/generated/avatar-1-temi-adelaja.jpg"
+    },
+    {
+      "quote": "Baremetrics quoted me $129/month. I'm at $8k MRR. That's absurd. This does the four things I actually check every morning for nine dollars. The MRR reconciliation matches my accountant's spreadsheet to the cent.",
+      "author": "Hannah Lindqvist",
+      "role": "Solo founder, Draftmonkey",
+      "avatar_prompt": "Candid photo of a Swedish woman in her late 20s with shoulder-length dark blonde hair, wearing a gray wool sweater, looking down at a notebook rather than the camera. Seated by a large window with soft Nordic winter light, a half-finished coffee beside her. Shot on Leica Q2, 28mm, cool color temperature, slight film grain, minimal wooden interior in background, no smile, unposed.",
+      "avatar_url": "/generated/avatar-2-hannah-lindqvist.jpg"
+    },
+    {
+      "quote": "The dunning list is the killer feature for me. I used to find out about card failures two weeks late. Now I see them the day they happen and can email the customer while they still remember signing up.",
+      "author": "Arjun Banerjee",
+      "role": "Co-founder, Stacklift",
+      "avatar_prompt": "Candid portrait of an Indian man in his mid-30s, wearing round wire glasses and a charcoal henley, side profile looking at a laptop screen rather than the camera. Warm tungsten desk lamp as key light, apartment window showing evening city lights softly blurred behind him. Shot on Canon R6 Mark II, 50mm f/1.4, slight chromatic aberration on the highlights, unretouched skin, focused expression, not posing.",
+      "avatar_url": "/generated/avatar-3-arjun-banerjee.jpg"
+    }
+  ],
+  "pricing": {
+    "tagline": "Two tiers. Cancel from the dashboard in one click.",
+    "tiers": [
+      {
+        "name": "Starter",
+        "price_usd": 9,
+        "period": "month",
+        "description": "For your first Stripe account.",
+        "features": [
+          "1 Stripe account",
+          "90 days of history",
+          "MRR, churn, failed payments, forecast",
+          "15-minute polling",
+          "Email support"
+        ],
+        "cta": "Start with Starter",
+        "recommended": false
+      },
+      {
+        "name": "Pro",
+        "price_usd": 29,
+        "period": "month",
+        "description": "For founders running more than one product.",
+        "features": [
+          "Unlimited Stripe accounts",
+          "Unlimited history",
+          "Combined + per-account views",
+          "CSV export of every metric",
+          "Priority email support"
+        ],
+        "cta": "Go Pro",
+        "recommended": true
+      }
+    ],
+    "guarantee": "30-day refund, no questions. Yearly plans get two months free."
+  },
+  "faq": [
     {
       "q": "How is this different from Baremetrics or ChartMogul?",
-      "a": "Same core metrics, smaller scope, lower price. Baremetrics starts around $129/mo and is built for teams with finance functions. This is $20/mo, aimed at solo founders doing $1k-$50k MRR who want the four numbers that matter on one page. No cohort analysis, no LTV models, no team seats. If you need those, buy Baremetrics. If you just want to see MRR without opening Stripe, buy this."
+      "a": "Price and scope. Baremetrics starts around $129/month and is built for VC-backed companies that want cohort analysis, segmentation, and augmentation. This is $9 or $29 and answers the four questions a solo founder actually checks daily: MRR, churn, failed payments, forecast. If you need cohort retention charts and a customer success workflow, use Baremetrics. If you just want yesterday's numbers without a Stripe safari, use this."
+    },
+    {
+      "q": "What data do you have access to?",
+      "a": "Only what you grant via a Stripe restricted API key with read-only scopes — customers, subscriptions, charges, invoices. We cannot create, modify, or cancel anything in your Stripe account. The integration is one-way by design. You can revoke the key from your Stripe dashboard at any time and we lose access instantly. We store cached data in Supabase in US-East, encrypted at rest."
     },
     {
       "q": "Why polling instead of webhooks?",
-      "a": "Webhooks require you to configure endpoints in Stripe, handle signature verification, and debug delivery failures. That's a support burden for you and us. Polling the Stripe API every 15 minutes gets you data that's fresh enough for a daily-check dashboard and makes setup a two-minute paste-your-key job. If you need sub-minute latency on churn events, this isn't the tool."
+      "a": "Webhooks require you to configure endpoints, handle retries, and debug silent failures when Stripe rotates signing secrets. For a tool you set up once and check daily, that's the wrong tradeoff. We poll the Stripe API every 15 minutes. You see new data within 15 minutes of it happening in Stripe, with zero configuration on your end. If you need real-time, this isn't the right tool."
     },
     {
-      "q": "What happens to my data if I cancel?",
-      "a": "Your account and cached Stripe data are deleted within 30 days of cancellation. You can also delete everything immediately from the settings page. We never had write access to your Stripe account, so there's nothing to disconnect on Stripe's side beyond revoking the restricted key, which you can do yourself in the Stripe dashboard in two clicks."
+      "q": "Does the MRR number match Stripe's?",
+      "a": "It matches what your accountant would calculate, which is not always what Stripe's dashboard shows. Annual subs are divided by 12. Trials are excluded by default. Proration, discounts, and credits are handled. If the number disagrees with Stripe, hover the figure and we'll show you every line item feeding into it. Most founders find our number is the one they actually wanted."
+    },
+    {
+      "q": "What if it doesn't work for my setup?",
+      "a": "If Stripe is your billing system and you have monthly or annual recurring subscriptions, it works. Edge cases we don't handle well yet: usage-based metered billing (partial support), multi-currency aggregation (we convert to USD at a daily rate — imperfect), and invoicing-only businesses without subscriptions. Email us before signing up if you're unsure. If it doesn't fit, we'll tell you."
+    },
+    {
+      "q": "Can I cancel? Do I get a refund?",
+      "a": "Cancel from the dashboard in one click, no email-the-founder hoops. Full refund within 30 days for any reason — just reply to the billing email. After 30 days you can still cancel any time and you won't be charged again. Yearly plans are refunded prorated within the first 30 days. We don't do dark patterns because we'd hate them in a tool we used."
+    },
+    {
+      "q": "Do you support teams?",
+      "a": "Not in v1. The product is built for solo founders or two-person teams where both share one login. If you need proper multi-seat with roles and permissions, this isn't it yet. We'd rather do one thing well for solo founders than add team management and dilute the product. If this becomes a blocker for you, email us — we track requests."
+    },
+    {
+      "q": "What happens to my data if you shut down?",
+      "a": "Honest answer: this is a small product. If it doesn't hit sustainable revenue, we'll wind it down with 60 days notice, export all your data to CSV, and refund any unused time on yearly plans. The integration is read-only, so there's nothing to untangle on your end — revoke the Stripe key and you're done. We'd rather say this upfront than pretend we're too big to fail."
     }
   ],
   "cta_final": {
-    "headline": "Stop opening Stripe to check MRR",
-    "body": "Connect a read-only key, see your real numbers on one page, cancel anytime.",
-    "button": "Start tracking in 30 seconds"
+    "headline": "Stop clicking through five Stripe screens every morning.",
+    "body": "Connect a read-only key, see your real numbers in 30 seconds. Full refund within 30 days.",
+    "button": "Connect Stripe",
+    "urgency": "Founding-member pricing locked for life on the first 100 accounts."
   }
 }

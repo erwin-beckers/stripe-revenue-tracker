@@ -1,12 +1,12 @@
 import { loadPost, loadPosts } from "@/lib/content";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 
 export async function generateStaticParams() {
   const posts = await loadPosts();
   return posts.map(p => ({ slug: p.slug }));
 }
 
-// Very small markdown -> HTML (headings + paragraphs + code). No external deps.
 function tinyMarkdown(md: string): string {
   return md
     .split("\n\n")
@@ -16,6 +16,7 @@ function tinyMarkdown(md: string): string {
       if (t.startsWith("### ")) return `<h3>${escapeHtml(t.slice(4))}</h3>`;
       if (t.startsWith("## ")) return `<h2>${escapeHtml(t.slice(3))}</h2>`;
       if (t.startsWith("# ")) return `<h1>${escapeHtml(t.slice(2))}</h1>`;
+      if (t.startsWith("> ")) return `<blockquote>${inlineMd(t.slice(2))}</blockquote>`;
       if (t.startsWith("```")) {
         const inner = t.replace(/^```[a-z]*\n?/, "").replace(/```$/, "");
         return `<pre><code>${escapeHtml(inner)}</code></pre>`;
@@ -23,6 +24,10 @@ function tinyMarkdown(md: string): string {
       if (/^[-*] /m.test(t)) {
         const items = t.split("\n").filter(l => /^[-*] /.test(l)).map(l => `<li>${inlineMd(l.slice(2))}</li>`).join("");
         return `<ul>${items}</ul>`;
+      }
+      if (/^\d+\. /m.test(t)) {
+        const items = t.split("\n").filter(l => /^\d+\. /.test(l)).map(l => `<li>${inlineMd(l.replace(/^\d+\. /, ""))}</li>`).join("");
+        return `<ol>${items}</ol>`;
       }
       return `<p>${inlineMd(t)}</p>`;
     })
@@ -48,12 +53,27 @@ export default async function Post({ params }: { params: Promise<{ slug: string 
   if (!post) notFound();
 
   return (
-    <article className="max-w-3xl mx-auto px-6 py-16 prose-dark">
-      <h1 className="text-4xl font-semibold leading-tight mb-4">{post.h1}</h1>
-      <div
-        className="mt-8"
-        dangerouslySetInnerHTML={{ __html: tinyMarkdown(post.body_markdown) }}
-      />
+    <article className="max-w-3xl mx-auto px-6 py-16">
+      <Link href="/blog" className="text-sm text-fg-muted hover:text-fg transition inline-flex items-center gap-2 mb-8">
+        <span>←</span> All posts
+      </Link>
+
+      {post.cover_image_url && (
+        <div className="rounded-2xl overflow-hidden border border-border mb-10 aspect-[16/9] shadow-[0_20px_60px_-20px_rgba(0,0,0,0.8)]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={post.cover_image_url} alt={post.h1} className="w-full h-full object-cover" />
+        </div>
+      )}
+
+      <div className="prose-dark">
+        <h1>{post.h1}</h1>
+        <div dangerouslySetInnerHTML={{ __html: tinyMarkdown(post.body_markdown) }} />
+      </div>
+
+      <div className="mt-16 pt-8 border-t border-border text-center">
+        <p className="text-fg-muted text-sm mb-4">Enjoyed this? Check out the product.</p>
+        <a href="/" className="btn-primary">Back to Stripe Revenue Tracker</a>
+      </div>
     </article>
   );
 }
@@ -62,5 +82,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const post = await loadPost(slug);
   if (!post) return {};
-  return { title: post.title, description: post.meta_description };
+  return {
+    title: post.title,
+    description: post.meta_description,
+    openGraph: {
+      title: post.title,
+      description: post.meta_description,
+      images: post.cover_image_url ? [post.cover_image_url] : undefined,
+    },
+  };
 }

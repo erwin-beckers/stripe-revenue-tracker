@@ -5,14 +5,43 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["ui-sans-serif", "system-ui", "-apple-system", "sans-serif"],
-        mono: ["ui-monospace", "SFMono-Regular", "Consolas", "monospace"],
+        sans: ["var(--font-geist-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
+        mono: ["var(--font-geist-mono)", "ui-monospace", "monospace"],
       },
       colors: {
-        bg: "#0a0a0a",
-        fg: "#ededed",
-        muted: "#8b8b8b",
-        accent: "#3b82f6",
+        bg: {
+          DEFAULT: "#0a0a0b",
+          elevated: "#111113",
+          card: "#17171a",
+        },
+        border: {
+          DEFAULT: "rgba(255,255,255,0.08)",
+          strong: "rgba(255,255,255,0.14)",
+        },
+        fg: {
+          DEFAULT: "#fafafa",
+          muted: "#a1a1a6",
+          subtle: "#6b6b70",
+        },
+        accent: {
+          DEFAULT: "#7c6cff",
+          hover: "#8e81ff",
+          glow: "rgba(124,108,255,0.2)",
+        },
+      },
+      keyframes: {
+        "fade-up": {
+          "0%": { opacity: "0", transform: "translateY(12px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        shimmer: {
+          "0%": { backgroundPosition: "-200% 0" },
+          "100%": { backgroundPosition: "200% 0" },
+        },
+      },
+      animation: {
+        "fade-up": "fade-up 0.6s ease-out forwards",
+        shimmer: "shimmer 8s linear infinite",
       },
     },
   },
