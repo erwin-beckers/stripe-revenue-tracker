@@ -23,7 +23,7 @@ export async function supabaseServer() {
     {
       cookies: {
         getAll: () => store.getAll(),
-        setAll: (all) => {
+        setAll: (all: { name: string; value: string; options?: CookieOptions }[]) => {
           try {
             all.forEach(({ name, value, options }) => store.set(name, value, options));
           } catch {
@@ -43,7 +43,7 @@ export function supabaseMiddleware(req: NextRequest, res: NextResponse) {
     {
       cookies: {
         getAll: () => req.cookies.getAll(),
-        setAll: (all) => {
+        setAll: (all: { name: string; value: string; options?: CookieOptions }[]) => {
           all.forEach(({ name, value }) => req.cookies.set(name, value));
           all.forEach(({ name, value, options }) =>
             res.cookies.set(name, value, options as CookieOptions));
