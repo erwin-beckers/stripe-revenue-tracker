@@ -210,10 +210,17 @@ export default async function Home() {
                   </div>
                 )}
                 <h3 className="text-xl font-semibold mb-1">{tier.name}</h3>
-                <div className="flex items-baseline gap-1 mb-5">
+                <div className="flex items-baseline gap-1 mb-2">
                   <span className="text-5xl font-semibold">${tier.price_usd}</span>
                   <span className="text-fg-muted">/{tier.period}</span>
                 </div>
+                {tier.trial_days ? (
+                  <p className="text-sm text-accent mb-5">
+                    {tier.trial_days}-day free trial · No card charged until day {tier.trial_days + 1}
+                  </p>
+                ) : (
+                  <div className="mb-5" />
+                )}
                 <ul className="space-y-3 mb-8">
                   {tier.features.map((feat, j) => (
                     <li key={j} className="flex items-start gap-3 text-fg-muted text-sm">
@@ -226,7 +233,7 @@ export default async function Home() {
                   href={tier.checkout_url || process.env.NEXT_PUBLIC_POLAR_CHECKOUT_URL || "#"}
                   className={tier.recommended ? "btn-primary w-full justify-center" : "btn-secondary w-full justify-center flex"}
                 >
-                  {tier.cta}
+                  {tier.trial_days ? `Start ${tier.trial_days}-day free trial` : tier.cta}
                 </a>
               </div>
             ))}

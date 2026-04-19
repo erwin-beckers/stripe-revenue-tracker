@@ -1,163 +1,162 @@
 {
   "hero": {
-    "eyebrow": "MRR dashboard for solo SaaS founders",
+    "eyebrow": "Revenue analytics for solo SaaS founders",
     "headline": "See your real MRR without logging into Stripe",
-    "subheadline": "Connect a read-only Stripe key and get MRR, churn, failed payments, and forecasts on one page. 30 seconds to set up, no webhooks required.",
-    "cta_primary": "Connect Stripe",
+    "subheadline": "One dashboard shows MRR, churn, failed payments, and forecasts in 30 seconds. Connect a read-only key and stop clicking through five Stripe screens every morning.",
+    "cta_primary": "Start free trial",
     "cta_secondary": "See a demo",
-    "image_prompt": "Editorial magazine-cover illustration, dark mode. A minimalist isometric composition of thin concentric rings representing revenue cohorts, stacked like a topographic map on a deep charcoal background (#0B0D10). A single thin vertical beam of warm amber (#F4A261) cuts upward through the rings, suggesting MRR growth. Around it, scattered small geometric shards in muted teal (#2A9D8F) imply churn and failed charges drifting away. Subtle film grain, crisp vector geometry, long soft shadows, sense of depth. No text, no UI elements, no people, no logos, no swooshes.",
-    "image_url": "/generated/hero.jpg"
+    "image_prompt": "An abstract editorial illustration in dark mode, magazine cover aesthetic. A geometric composition of a single glowing line graph ascending across a deep navy void, rendered as a taut copper wire suspended between floating matte-black monoliths. Soft volumetric light from the lower left, muted emerald accent on one data point. Subtle grid texture fading into shadow. Sense of depth through overlapping translucent planes. Minimal, precise, architectural. No text, no faces, no UI elements, no screenshots. Flat vector meets 3D isometric, with a hint of risograph grain."
   },
   "social_proof": {
-    "label": "Built for solo founders",
+    "label": "Built on principles you care about",
     "metrics": [
       {
-        "value": "<30s",
-        "label": "From signup to dashboard"
+        "value": "<60s",
+        "label": "from signup to dashboard"
       },
       {
         "value": "Read-only",
         "label": "Stripe API access"
       },
       {
-        "value": "15 min",
-        "label": "Data refresh interval"
+        "value": "15-min",
+        "label": "data refresh cycle"
       }
     ]
   },
   "problem": {
     "eyebrow": "The problem",
-    "title": "Stripe buries the numbers you actually check every morning.",
+    "title": "Stripe's dashboard buries the numbers you actually check daily.",
     "scenarios": [
-      "You open Stripe to check yesterday's MRR. Four clicks later you're staring at a chart that bundles trials with paid subs and annual plans are counted at full value instead of monthly.",
-      "A customer churned last night. To find out who, why, and how long they'd been paying, you cross-reference three screens and export a CSV. It's 8am and you haven't had coffee.",
-      "Two payments failed this week. Stripe didn't tell you. You'll notice when the monthly email summary lands — or when the customer emails to cancel."
+      "You open Stripe to check yesterday's MRR. Four clicks later, you're staring at a number that includes trials, or doesn't, and you can't remember which.",
+      "A customer annualized their $29/mo plan. Is that $29 MRR or $348? Stripe shows one, your spreadsheet shows another, and neither matches what you told an investor last week.",
+      "Three subscriptions failed overnight. You won't know until the dunning emails bounce back in a week, because Stripe doesn't surface failed payments on the default view."
     ]
   },
   "solution": {
     "eyebrow": "The fix",
-    "title": "One page. Your real numbers. No Stripe tabs open.",
-    "body": "Paste a read-only restricted API key. Within 30 seconds you see true MRR (annual plans divided by 12, trials excluded), 7/30/90-day deltas, yesterday's churn with customer name and tenure, every subscription currently in payment failure, and a forecast for next month based on your active book. We poll Stripe every 15 minutes and cache locally, so no webhooks to configure and no Stripe dashboard tabs to keep open. Read-only means we literally cannot charge, refund, or modify anything in your account. If your key leaked tomorrow, the worst case is someone else sees your numbers."
+    "title": "One page. The four numbers that matter. Refreshed every 15 minutes.",
+    "body": "Connect Stripe with a read-only restricted key. That's the entire setup. No webhooks to configure, no data warehouse, no ETL. We poll the Stripe API every 15 minutes and cache your numbers so the dashboard loads instantly. You get normalized MRR (annual subs correctly divided by 12), 7/30/90-day deltas, a list of who churned yesterday with tenure, which subscriptions are in payment failure right now, and a forecast for next month based on active subs. Open the page, get the answer, close the tab, get back to building."
   },
   "features": [
     {
-      "title": "True MRR, computed correctly",
-      "body": "Annual plans divided by 12. Trials excluded. Discounts applied. Quarterly and custom intervals normalized to monthly. The number you'd compute yourself in a spreadsheet, computed every 15 minutes so you don't have to.",
+      "title": "Normalized MRR that actually reconciles",
+      "body": "Annual subs divided by 12. Trials excluded. Discounts applied. The number you'd calculate by hand if you had two hours every morning. See 7, 30, and 90-day change at a glance, with the delta broken down into new, expansion, contraction, and churn.",
       "icon": "trending-up"
     },
     {
-      "title": "Churn with context",
-      "body": "Yesterday's cancellations listed by customer name, plan, MRR lost, and tenure. If Stripe captured a cancellation reason, it's there. No more exporting CSVs to figure out who you lost and whether they were a six-month or six-year customer.",
+      "title": "Churn with context, not just a count",
+      "body": "See who churned yesterday: name, email, plan, how long they were a customer, and the cancellation reason if they gave one. Sorted by revenue impact so you know which losses deserve a follow-up email and which were always going to happen.",
       "icon": "users"
     },
     {
-      "title": "Payment failure alerts",
-      "body": "Every subscription currently in past_due or unpaid status, surfaced on the dashboard. Optional email when a new failure appears so you can reach out before the retry exhausts and the customer involuntarily churns.",
+      "title": "Failed payments surfaced immediately",
+      "body": "Every subscription currently in payment failure, ranked by MRR at risk. Catch the $199/mo customer whose card expired before Stripe's dunning sequence writes them off. One click to open the customer in Stripe if you want to email them directly.",
       "icon": "bell"
     },
     {
-      "title": "Read-only by design",
-      "body": "We ask for a restricted Stripe key with read scopes only. We cannot charge customers, issue refunds, or modify subscriptions. The attack surface is your numbers, not your money. Revoke the key from Stripe anytime and we go dark immediately.",
-      "icon": "lock"
-    },
-    {
-      "title": "No webhook setup",
-      "body": "Most dashboards ask you to configure webhooks, verify signing secrets, and debug missed events. We poll the Stripe API every 15 minutes and reconcile state each time. Connect a key, close the tab, come back to a working dashboard.",
-      "icon": "refresh"
-    },
-    {
-      "title": "Next-month forecast",
-      "body": "Based on active subscriptions, billing cycles, known cancellations, and historical involuntary churn rate on your account. Not a black-box ML model — a transparent calculation you can audit. See the assumptions, adjust if you disagree.",
+      "title": "Next-month forecast, no crystal ball",
+      "body": "Projected MRR for next month based on active subscriptions, scheduled renewals, known upcoming cancellations, and your trailing churn rate. No machine learning hand-waving, just arithmetic you can verify. Useful for deciding whether you can afford that contractor this quarter.",
       "icon": "chart"
+    },
+    {
+      "title": "Read-only by design",
+      "body": "Connect with a Stripe restricted key scoped to read-only. We literally cannot charge your customers, issue refunds, or modify subscriptions. The security conversation with yourself ends in 30 seconds. Revoke access from your Stripe dashboard any time.",
+      "icon": "shield"
+    },
+    {
+      "title": "No webhooks, no config files",
+      "body": "Every other tool asks you to set up webhook endpoints and hope they don't silently fail. We poll the Stripe API every 15 minutes. Your only setup step is pasting a restricted key. Works whether your Stripe account is a week old or eight years old.",
+      "icon": "refresh"
     }
   ],
   "who_this_is_for": {
     "eyebrow": "Built for you if",
     "title": "You're in the right place if…",
     "items": [
-      "You're a solo or two-person SaaS founder doing between $1k and $50k MRR on Stripe.",
-      "You already check Stripe daily and want the numbers visible without five clicks and a mental calculator.",
-      "You've tried Baremetrics or ChartMogul and bounced off the $100+/mo pricing for a one-person business.",
-      "You don't need team seats, Slack integrations, cohort retention heatmaps, or a customer success rep onboarding you."
+      "You're a solo or two-person SaaS founder doing $1k–$50k MRR on Stripe and checking revenue daily.",
+      "You already use Stripe for billing and want the four numbers that matter on one page, not five.",
+      "You've tried Baremetrics or ChartMogul and couldn't justify $100+/mo at your current revenue.",
+      "You don't need team accounts, custom cohort analysis, or a sales rep — just the numbers, fast."
     ]
   },
   "pricing": {
-    "tagline": "Honest pricing. Cancel anytime from the dashboard.",
+    "tagline": "Simple pricing. 7-day free trial. Cancel anytime.",
     "tiers": [
       {
         "name": "Starter",
         "price_usd": 9,
         "period": "month",
-        "description": "For one Stripe account and recent history.",
-        "features": [
-          "1 Stripe account",
-          "90 days of history",
-          "MRR, churn, failed payments, forecast",
-          "15-minute refresh",
-          "Email alerts for payment failures"
-        ],
-        "cta": "Start on Starter",
+        "trial_days": 7,
         "recommended": false,
-        "checkout_url": "https://buy.polar.sh/polar_cl_TETPZ9UG4Ak63NYNWGAaNSveRhQPCT5loi4JF2BOHcj"
+        "features": [
+          "1 Stripe account connected",
+          "90 days of historical data",
+          "MRR, churn, failed payments, forecast",
+          "15-minute refresh cycle",
+          "Email support"
+        ],
+        "cta": "Start 7-day trial",
+        "checkout_url": "https://buy.polar.sh/polar_cl_20AIItf4fhCGqI7DNEpnjVjATZxqHhn71hlSR1tFata"
       },
       {
         "name": "Pro",
         "price_usd": 29,
         "period": "month",
-        "description": "For founders running multiple products or brands.",
+        "trial_days": 7,
+        "recommended": true,
         "features": [
           "Unlimited Stripe accounts",
-          "Unlimited history",
+          "Unlimited historical data",
           "Everything in Starter",
-          "Consolidated MRR across accounts",
-          "CSV export",
-          "Yearly billing = 2 months free"
+          "Multi-account consolidated view",
+          "Priority email support",
+          "Yearly billing: 2 months free"
         ],
-        "cta": "Start on Pro",
-        "recommended": true,
-        "checkout_url": "https://buy.polar.sh/polar_cl_E3lkfTYf2vYt7xuh8YhLptPxPAvP1evAzIHKU0WoOux"
+        "cta": "Start 7-day trial",
+        "checkout_url": "https://buy.polar.sh/polar_cl_g0ZvokE0JEMetXSQe7jyWtY6ug0LS7IXeq8eZ40zzE6"
       }
     ],
-    "guarantee": "30-day money-back guarantee, no questions asked."
+    "guarantee": "7-day free trial, no card required. Cancel in one click."
   },
   "faq": [
     {
       "q": "How is this different from Baremetrics or ChartMogul?",
-      "a": "They're built for growth-stage teams with revenue ops people. You get cohort heatmaps, segmentation, Slack digests, and a $100-250/mo bill. This is the 20% of that product a solo founder actually opens daily: MRR, churn, failures, forecast. One page, $9 or $29/mo. If you outgrow it and need cohort LTV analysis across ten dimensions, go use Baremetrics — no hard feelings."
+      "a": "Same core metrics — MRR, churn, failed payments, forecasts — at roughly a tenth of the price. Baremetrics and ChartMogul are built for venture-backed SaaS companies with finance teams, cohort analysis needs, and five-figure MRR minimums to justify the cost. This is built for solo founders at $1k–$50k MRR who want the four numbers that matter and nothing else. If you need segmentation by UTM source or custom cohort retention charts, buy Baremetrics."
     },
     {
-      "q": "Is my Stripe data actually safe?",
-      "a": "We require a restricted Stripe key with read-only scopes. We cannot create charges, issue refunds, modify subscriptions, or update customers — Stripe enforces this at the API level, not us. Keys are encrypted at rest. Revoke the key in your Stripe dashboard and our access ends that second. We store aggregated metrics and cached subscription state, nothing is sold or shared with third parties."
+      "q": "What Stripe permissions do you need?",
+      "a": "A restricted API key with read-only scopes on subscriptions, customers, charges, and invoices. That's it. We cannot create charges, issue refunds, modify subscriptions, or access your payout bank info. You generate the key in your Stripe dashboard and paste it during setup — takes about 60 seconds. Revoke it any time from Stripe and we immediately lose all access to your data."
     },
     {
-      "q": "Why polling instead of webhooks?",
-      "a": "Webhooks require you to configure an endpoint, copy a signing secret, and debug missed events when Stripe retries fail. For a solo founder that's 20 minutes of friction before you see anything. We poll the Stripe API every 15 minutes and reconcile full state, so setup is pasting one API key. The tradeoff is up to 15 minutes of lag on brand-new events, which doesn't matter for a daily-check dashboard."
+      "q": "Do I need to set up webhooks?",
+      "a": "No. We poll the Stripe API every 15 minutes and cache your data. Webhooks are the single most common onboarding friction point in SaaS tools because they require customer config, can silently fail, and often need ngrok-style forwarding during testing. Skipping them is a deliberate product decision. Your dashboard lags real-time Stripe by at most 15 minutes, which is fine for a number you check once a day."
     },
     {
-      "q": "Do you support Paddle, Chargebee, or Lemon Squeezy?",
-      "a": "No, Stripe only. The product is called Stripe Revenue Tracker. Supporting other processors means reconciling different data models, which would compromise how accurate the Stripe experience is. If you're on Paddle or Chargebee, this isn't the right tool — and we'd rather tell you upfront than sell you a subscription you'll cancel."
+      "q": "How long does setup take?",
+      "a": "Under two minutes. Sign up with email, generate a restricted Stripe key (Stripe has a one-click template), paste it in. We backfill 90 days of history in the background — usually done in 30 to 90 seconds depending on your transaction volume. You'll see MRR, churn, and failed payments on the dashboard before you finish your coffee."
     },
     {
-      "q": "What counts as MRR here? Are annual plans included?",
-      "a": "Yes. Annual plans are divided by 12 and counted as monthly recurring revenue. Quarterly and semi-annual plans are normalized the same way. Trials are excluded until they convert. Discounts and coupons are applied to the recognized amount. One-time payments don't count. We show the formula on the dashboard so you can audit any number against Stripe yourself."
+      "q": "Can I cancel and get a refund?",
+      "a": "Yes. Start with a 7-day free trial — no card required. If you pay and decide within 30 days that it's not useful, email us and we'll refund in full, no questions. After that, cancel any time from your account page and you won't be charged again. No annual lock-in, no cancellation forms, no retention call."
     },
     {
-      "q": "How long does setup actually take?",
-      "a": "Under a minute if you already have a Stripe account. Sign up, go to Stripe's API keys page, create a restricted key with read-only permissions (we give you a one-click preset link), paste it, done. First sync pulls your last 90 days of subscription history in about 20-60 seconds depending on volume, and the dashboard loads with real numbers immediately after."
+      "q": "Does this support Paddle, Chargebee, or other billing providers?",
+      "a": "No. Stripe only, by design. Supporting multiple billing backends means normalizing wildly different data models, and in v1 we'd rather nail one than half-support three. If Stripe isn't your billing provider, this isn't the right tool. If you're on Stripe plus something else, we'll show you your Stripe-side numbers accurately — just know they won't include the other provider's revenue."
     },
     {
-      "q": "Is there a free trial?",
-      "a": "Yes, 14 days free on either tier. No credit card required to start — connect your Stripe key, see your numbers, decide if it's worth $9 or $29/mo. If you subscribe and change your mind in the first 30 days, email us for a full refund."
+      "q": "What happens to my data?",
+      "a": "We store your Stripe metrics in a Supabase Postgres database encrypted at rest. We never store full card numbers or bank info (Stripe never exposes those over the API anyway). We don't sell data, don't run analytics on your metrics, and don't share with third parties. Delete your account from settings and we purge everything within 30 days. Full privacy policy linked in the footer."
     },
     {
-      "q": "Can I export my data?",
-      "a": "Yes. Pro includes CSV export of subscriptions, MRR history, churn events, and failed payments. Starter gets CSV export of the current dashboard view. Everything we show you is derived from Stripe, so you can always go back to Stripe as the source of truth — we're a view, not a system of record."
+      "q": "Do you support multiple Stripe accounts?",
+      "a": "Yes, on the Pro plan. Connect as many Stripe accounts as you have — useful if you run multiple SaaS products, have a separate test account you actually use for a small side project, or consolidated a co-founder's account. The Pro dashboard shows each account individually and a combined view across all of them. Starter is limited to one Stripe account."
     }
   ],
   "cta_final": {
-    "headline": "Stop clicking through five Stripe screens to check MRR.",
-    "body": "Connect a read-only key, see your numbers in 30 seconds, cancel anytime if it's not useful.",
-    "button": "Connect Stripe",
-    "urgency": "14-day free trial, no credit card required."
+    "headline": "Stop clicking through Stripe. Start seeing your numbers.",
+    "body": "7-day free trial, no credit card required. Takes under two minutes to connect.",
+    "button": "Start free trial",
+    "urgency": "Early-bird pricing: $9 and $29 locked in for life for the first 100 customers."
   }
 }

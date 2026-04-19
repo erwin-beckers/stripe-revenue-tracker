@@ -9,6 +9,7 @@ export type PricingTier = {
   cta: string;
   recommended?: boolean;
   checkout_url?: string;
+  trial_days?: number;
 };
 
 export type FeatureIcon =

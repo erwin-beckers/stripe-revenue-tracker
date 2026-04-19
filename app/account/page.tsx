@@ -54,6 +54,13 @@ export default async function AccountPage() {
 
         {active ? (
           <div className="space-y-4">
+            {active.status === "trialing" && active.current_period_end && (
+              <p className="text-sm text-accent bg-accent/10 border border-accent/20 rounded-lg px-4 py-3">
+                Free trial · Ends {new Date(active.current_period_end).toLocaleDateString()}
+                {" · "}
+                {Math.max(0, Math.ceil((new Date(active.current_period_end).getTime() - Date.now()) / 86400000))} days left
+              </p>
+            )}
             <div className="flex justify-between text-sm">
               <span className="text-fg-muted">Plan</span>
               <span className="font-medium capitalize">{active.tier}</span>
@@ -61,7 +68,8 @@ export default async function AccountPage() {
             {active.current_period_end && (
               <div className="flex justify-between text-sm">
                 <span className="text-fg-muted">
-                  {active.cancel_at_period_end ? "Ends on" : "Renews on"}
+                  {active.cancel_at_period_end ? "Ends on" :
+                    active.status === "trialing" ? "First charge on" : "Renews on"}
                 </span>
                 <span>{new Date(active.current_period_end).toLocaleDateString()}</span>
               </div>
