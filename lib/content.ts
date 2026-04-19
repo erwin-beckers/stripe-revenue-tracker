@@ -11,6 +11,11 @@ export type PricingTier = {
   checkout_url?: string;
 };
 
+export type FeatureIcon =
+  | "chart" | "shield" | "zap" | "refresh" | "bell" | "settings"
+  | "users" | "mail" | "lock" | "eye" | "trending-up" | "check-circle"
+  | "layers" | "database" | "key" | "clock";
+
 export type LandingCopy = {
   hero: {
     eyebrow?: string;
@@ -38,16 +43,13 @@ export type LandingCopy = {
   features: Array<{
     title: string;
     body: string;
-    image_prompt?: string;
-    image_url?: string;
+    icon?: FeatureIcon;
   }>;
-  testimonials?: Array<{
-    quote: string;
-    author: string;
-    role: string;
-    avatar_prompt?: string;
-    avatar_url?: string;
-  }>;
+  who_this_is_for?: {
+    eyebrow?: string;
+    title: string;
+    items: string[];
+  };
   pricing: {
     tagline?: string;
     tiers: PricingTier[];

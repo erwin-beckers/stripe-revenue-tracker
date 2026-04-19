@@ -1,4 +1,5 @@
 import { loadLanding } from "@/lib/content";
+import type { FeatureIcon } from "@/lib/content";
 
 const CheckIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -12,6 +13,29 @@ const ArrowIcon = () => (
     <polyline points="12 5 19 12 12 19" />
   </svg>
 );
+
+function FeatureGlyph({ name }: { name?: FeatureIcon }) {
+  const common = { width: 22, height: 22, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
+  switch (name) {
+    case "chart":         return <svg {...common}><line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" /></svg>;
+    case "shield":        return <svg {...common}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>;
+    case "zap":           return <svg {...common}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>;
+    case "refresh":       return <svg {...common}><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>;
+    case "bell":          return <svg {...common}><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>;
+    case "settings":      return <svg {...common}><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.6 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9 1.65 1.65 0 004.27 7.18l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.6 1.65 1.65 0 0010 3.09V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>;
+    case "users":         return <svg {...common}><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>;
+    case "mail":          return <svg {...common}><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>;
+    case "lock":          return <svg {...common}><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>;
+    case "eye":           return <svg {...common}><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>;
+    case "trending-up":   return <svg {...common}><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>;
+    case "check-circle":  return <svg {...common}><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>;
+    case "layers":        return <svg {...common}><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>;
+    case "database":      return <svg {...common}><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>;
+    case "key":           return <svg {...common}><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>;
+    case "clock":         return <svg {...common}><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>;
+    default:              return <svg {...common}><circle cx="12" cy="12" r="9"/></svg>;
+  }
+}
 
 export default async function Home() {
   const landing = await loadLanding();
@@ -55,13 +79,13 @@ export default async function Home() {
           </div>
         </div>
 
-        {/* Hero image */}
+        {/* Hero image — editorial illustration, not fake UI */}
         {landing.hero.image_url && (
-          <div className="max-w-5xl mx-auto mt-16 px-6">
-            <div className="relative rounded-2xl overflow-hidden border border-border shadow-[0_40px_80px_-20px_rgba(0,0,0,0.8)] bg-bg-elevated fade-in" style={{ animationDelay: "0.2s" }}>
+          <div className="max-w-4xl mx-auto mt-16 px-6">
+            <div className="relative rounded-2xl overflow-hidden border border-border shadow-[0_40px_80px_-20px_rgba(0,0,0,0.8)] bg-bg-elevated fade-in aspect-[16/9]" style={{ animationDelay: "0.2s" }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={landing.hero.image_url} alt={landing.hero.headline}
-                className="w-full h-auto" />
+                className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent pointer-events-none" />
             </div>
           </div>
@@ -122,7 +146,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Features */}
+      {/* Features — icons + typography, no fake screenshots */}
       <section id="features" className="py-24 border-t border-border">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
@@ -132,13 +156,9 @@ export default async function Home() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {landing.features.map((f, i) => (
               <div key={i} className="card p-7 hover:border-border-strong transition group">
-                {f.image_url && (
-                  <div className="mb-5 rounded-lg overflow-hidden border border-border aspect-[3/2]">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={f.image_url} alt={f.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
-                  </div>
-                )}
+                <div className="w-11 h-11 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mb-5 group-hover:bg-accent/15 transition">
+                  <FeatureGlyph name={f.icon} />
+                </div>
                 <h3 className="text-lg font-semibold mb-2">{f.title}</h3>
                 <p className="text-fg-muted text-sm leading-relaxed">{f.body}</p>
               </div>
@@ -147,35 +167,26 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      {landing.testimonials && landing.testimonials.length > 0 && (
+      {/* Who this is for */}
+      {landing.who_this_is_for && landing.who_this_is_for.items.length > 0 && (
         <section className="py-24 border-t border-border">
-          <div className="max-w-5xl mx-auto px-6">
-            <div className="text-center mb-14">
-              <p className="text-sm font-medium text-accent uppercase tracking-wider mb-3">Testimonials</p>
-              <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gradient">From real founders.</h2>
+          <div className="max-w-3xl mx-auto px-6">
+            <div className="text-center mb-12">
+              {landing.who_this_is_for.eyebrow && (
+                <p className="text-sm font-medium text-accent uppercase tracking-wider mb-3">{landing.who_this_is_for.eyebrow}</p>
+              )}
+              <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gradient leading-tight">
+                {landing.who_this_is_for.title}
+              </h2>
             </div>
-            <div className="grid md:grid-cols-3 gap-6">
-              {landing.testimonials.map((t, i) => (
-                <div key={i} className="card p-7 flex flex-col">
-                  <div className="text-accent text-3xl leading-none mb-3">&ldquo;</div>
-                  <p className="text-fg leading-relaxed flex-1">{t.quote}</p>
-                  <div className="flex items-center gap-3 mt-6 pt-6 border-t border-border">
-                    {t.avatar_url ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={t.avatar_url} alt={t.author}
-                        className="w-10 h-10 rounded-full object-cover border border-border" />
-                    ) : (
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent to-accent-hover" />
-                    )}
-                    <div>
-                      <div className="font-medium text-sm">{t.author}</div>
-                      <div className="text-xs text-fg-muted">{t.role}</div>
-                    </div>
-                  </div>
-                </div>
+            <ul className="space-y-4 max-w-2xl mx-auto">
+              {landing.who_this_is_for.items.map((item, i) => (
+                <li key={i} className="flex gap-4 items-start card p-5">
+                  <span className="text-accent flex-shrink-0 mt-0.5"><CheckIcon /></span>
+                  <span className="text-fg leading-relaxed">{item}</span>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         </section>
       )}
