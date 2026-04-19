@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { color-scheme: dark; }
+body {
+  background: #0a0a0a;
+  color: #ededed;
+  font-feature-settings: "ss01", "cv01";
+}
+
+a { color: inherit; }
+a:hover { color: #3b82f6; }
+
+.prose-dark h1, .prose-dark h2, .prose-dark h3 { color: #fff; }
+.prose-dark p, .prose-dark li { color: #d4d4d4; line-height: 1.7; }
+.prose-dark code {
+  background: #1f1f1f;
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
