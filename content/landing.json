@@ -97,7 +97,7 @@
           "Email support"
         ],
         "cta": "Start 7-day trial",
-        "checkout_url": "https://buy.polar.sh/polar_cl_20AIItf4fhCGqI7DNEpnjVjATZxqHhn71hlSR1tFata"
+        "checkout_url": "https://sandbox-api.polar.sh/v1/checkout-links/polar_cl_lEQCR37VcdvF6yzRhrxTGxLolldj63mVYm0TP2nYlCF/redirect"
       },
       {
         "name": "Pro",
@@ -114,7 +114,7 @@
           "Yearly billing: 2 months free"
         ],
         "cta": "Start 7-day trial",
-        "checkout_url": "https://buy.polar.sh/polar_cl_g0ZvokE0JEMetXSQe7jyWtY6ug0LS7IXeq8eZ40zzE6"
+        "checkout_url": "https://sandbox-api.polar.sh/v1/checkout-links/polar_cl_3FtBKCNW7uAwFb29NeFgAaLV9bqAAZO9lVo1C2u9RJ7/redirect"
       }
     ],
     "guarantee": "7-day free trial, no card required. Cancel in one click."
