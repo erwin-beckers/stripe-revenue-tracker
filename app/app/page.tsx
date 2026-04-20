@@ -87,10 +87,12 @@ export default async function AppPage() {
       <div className="max-w-2xl mx-auto px-6 py-24">
         <div className="card p-8 border-red-500/30">
           <h1 className="text-2xl font-semibold mb-3">Couldn&apos;t reach Stripe</h1>
-          <p className="text-fg-muted mb-4">{error}</p>
+          <pre className="text-sm text-fg-muted mb-6 whitespace-pre-wrap bg-bg-elevated/40 p-4 rounded-lg border border-border">
+            {error}
+          </pre>
           <p className="text-sm text-fg-subtle mb-6">
-            Your restricted key might have been revoked, or it doesn&apos;t have the required read scopes
-            (Customers, Invoices, Subscriptions, Account).
+            Check that your restricted key is still active and has read scope on Customers,
+            Invoices, Subscriptions, Charges, Payment Intents, and Account.
           </p>
           <Link href="/app/connect" className="btn-primary">Reconnect Stripe</Link>
         </div>

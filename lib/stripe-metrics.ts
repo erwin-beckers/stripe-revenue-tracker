@@ -98,17 +98,20 @@ function describePlan(sub: Stripe.Subscription): string {
   const item = sub.items?.data?.[0];
   const price = item?.price;
   if (!price) return "unknown";
-  const nickname = price.nickname || (price.product as any)?.name || price.id;
+  // product is NOT expanded here (Stripe's 4-level expansion cap); falls back to nickname/id.
+  const nickname = price.nickname || (typeof price.product === "object" ? (price.product as any)?.name : null) || price.id;
   const interval = price.recurring?.interval || "once";
   return `${nickname} / ${interval}`;
 }
 
 async function fetchAllSubscriptions(client: Stripe): Promise<Stripe.Subscription[]> {
+  // Stripe caps expansion at 4 levels deep — data.items.data.price is the max.
+  // We skip expanding price.product; describePlan() falls back to price.nickname / id.
   const out: Stripe.Subscription[] = [];
   for await (const s of client.subscriptions.list({
     limit: 100,
     status: "all",
-    expand: ["data.customer", "data.items.data.price.product", "data.discount"],
+    expand: ["data.customer", "data.discount"],
   })) {
     out.push(s);
   }
