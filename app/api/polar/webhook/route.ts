@@ -42,7 +42,7 @@ function verifySignature(
   return false;
 }
 
-async function upsertSubscription(sub: any) {
+async function upsertSubscription(sub: any, requestUrl: string) {
   const admin = supabaseAdmin();
   const email = sub?.customer?.email || sub?.customer_email || sub?.user?.email;
   if (!email) {
@@ -53,6 +53,7 @@ async function upsertSubscription(sub: any) {
   // Find or create the Supabase auth user by email
   const { data: listed } = await admin.auth.admin.listUsers();
   let userId = listed?.users?.find(u => u.email?.toLowerCase() === email.toLowerCase())?.id;
+  const isNewUser = !userId;
 
   if (!userId) {
     // Create the user (no password yet — they'll set one via magic link / reset flow)
@@ -65,12 +66,22 @@ async function upsertSubscription(sub: any) {
       return;
     }
     userId = created.user.id;
+  }
 
-    // Send them a magic link so they can actually log in
-    await admin.auth.admin.generateLink({
-      type: "magiclink",
+  // Send magic-link email so the user can log in.
+  // signInWithOtp actually dispatches the email (unlike admin.generateLink which only generates).
+  // We send this for both new users AND existing users on new purchase, so the email acts as
+  // a "welcome / start using it" CTA.
+  if (isNewUser) {
+    const origin = new URL(requestUrl).origin;
+    const { error: otpErr } = await admin.auth.signInWithOtp({
       email,
+      options: {
+        emailRedirectTo: `${origin}/auth/callback?next=/app`,
+        shouldCreateUser: false, // user already exists (we just made them)
+      },
     });
+    if (otpErr) console.warn("polar webhook: signInWithOtp failed", otpErr.message);
   }
 
   const record = {
@@ -117,9 +128,9 @@ export async function POST(req: NextRequest) {
 
   try {
     if (type.startsWith("subscription.")) {
-      await upsertSubscription(data);
+      await upsertSubscription(data, req.url);
     } else if (type.startsWith("checkout.") && data?.subscription) {
-      await upsertSubscription(data.subscription);
+      await upsertSubscription(data.subscription, req.url);
     }
   } catch (e) {
     console.error("polar webhook: handler error", e);
